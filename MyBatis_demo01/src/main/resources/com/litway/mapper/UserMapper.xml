@@ -7,6 +7,6 @@
 <mapper namespace="com.litway.mapper.UserMapper">
     <insert id="insertUser">
         insert into `t_user`
-        values (null, 'admin', 'admin', 18, '男', 'admin@qq.com')
+        values (null, 'admin', 'admin', 18, '男', 'admin@qq.com', '0')
     </insert>
 </mapper>
