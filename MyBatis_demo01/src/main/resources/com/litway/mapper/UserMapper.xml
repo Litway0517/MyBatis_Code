@@ -5,6 +5,17 @@
 
 
 <mapper namespace="com.litway.mapper.UserMapper">
+    <resultMap id="userMap" type="com.litway.entity.User">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="email" property="email" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+
     <insert id="insertUser">
         insert into `t_user`
         values (null, 'admin', 'admin', 18, '男', 'admin@qq.com', '0')
@@ -21,4 +32,18 @@
         set `del_flag` = '2'
         where `id` = 3
     </delete>
+
+    <!--
+        查询功能的标签必须设置resultType或者resultMap
+        resultType: 用来设置自动映射. 即查询出来的结果字段名称和实体的成员变量的名称一致时就会自动映射.
+        resultMap: 用来设置手动映射. 不一致时的情况.
+    -->
+    <select id="getUserById" resultMap="userMap">
+        select * from `t_user` where `id` = 3
+    </select>
+
+    <select id="findAll" resultMap="userMap">
+        select *
+        from `t_user`
+    </select>
 </mapper>

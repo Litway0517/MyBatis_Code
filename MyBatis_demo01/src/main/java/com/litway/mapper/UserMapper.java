@@ -1,5 +1,9 @@
 package com.litway.mapper;
 
+import com.litway.entity.User;
+
+import java.util.List;
+
 /**
  * 用户映射器
  *
@@ -15,9 +19,28 @@ public interface UserMapper {
      */
     public int insertUser();
 
+    /**
+     * 更新用户
+     *
+     * @return int
+     */
     public int updateUser();
 
+    /**
+     * 删除用户
+     *
+     * @return int
+     */
     public int deleteUser();
+
+    /**
+     * 得到用户id
+     *
+     * @return {@link User}
+     */
+    public User getUserById();
+
+    public List<User> findAll();
 
 
 
