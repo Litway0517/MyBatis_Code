@@ -29,9 +29,7 @@ public class UserMapperTest {
         // 获取接口对象 -> 反射!
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> all = mapper.findAll();
-        for (User user : all) {
-            System.out.println(user);
-        }
+        all.forEach(System.out::println);
 
         // 关闭连接
         sqlSession.close();
