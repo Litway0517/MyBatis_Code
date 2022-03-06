@@ -18,7 +18,9 @@
             </dataSource>
         </environment>
     </environments>
+
     <!--引入映射文件-->
     <mappers>
+        <mapper resource="com/litway/mapper/UserMapper.xml" />
     </mappers>
 </configuration>
