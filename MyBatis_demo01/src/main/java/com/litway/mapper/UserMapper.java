@@ -40,6 +40,11 @@ public interface UserMapper {
      */
     public User getUserById();
 
+    /**
+     * 找到所有
+     *
+     * @return {@link List}<{@link User}>
+     */
     public List<User> findAll();
 
 
