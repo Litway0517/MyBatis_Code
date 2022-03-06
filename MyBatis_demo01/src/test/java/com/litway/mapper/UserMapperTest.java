@@ -29,10 +29,8 @@ public class UserMapperTest {
         SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
         // 调用工厂获取一个sqlSession
         SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);
-        // 通过工厂来获取连接 -> 自动提交
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
 
-        // 获取接口对象 -> 反射!
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> all = mapper.findAll();
         all.forEach(System.out::println);
