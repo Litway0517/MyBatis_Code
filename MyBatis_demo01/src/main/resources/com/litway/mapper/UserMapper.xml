@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- !DOCTYPE后面跟着的标签就是该xml配置文件的根标签 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.litway.mapper.UserMapper">
+    <insert id="insertUser">
+        insert into `t_user`
+        values (null, 'admin', 'admin', 18, '男', 'admin@qq.com')
+    </insert>
+</mapper>
