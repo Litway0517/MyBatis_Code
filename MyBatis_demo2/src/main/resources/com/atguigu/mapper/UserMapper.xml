@@ -14,8 +14,20 @@
     </resultMap>
 
 
+    <select id="selectUserVo">
+        select * from `t_user`
+    </select>
+
     <select id="findAll" resultType="user">
         select * from `t_user`
+    </select>
+
+    <select id="getUserByUsername" parameterType="string" resultType="user">
+        select * from `t_user` where `username` = #{username}
+    </select>
+
+    <select id="getUserByUsername2" parameterType="string" resultType="user">
+        select * from `t_user` where `username` = '${username}'
     </select>
 
 
