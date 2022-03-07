@@ -23,5 +23,9 @@ public interface UserMapper {
 
     public User getUserByUsername2(String username);
 
+    public User getUserByUsernameAndPassword(String username, String password);
+
+
+
 
 }
