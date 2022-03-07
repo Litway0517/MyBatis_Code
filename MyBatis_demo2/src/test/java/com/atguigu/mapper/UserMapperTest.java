@@ -5,11 +5,26 @@ import com.atguigu.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class UserMapperTest {
+
+    @Test
+    public void checkLogin2() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("username", "张三");
+        map.put("password", "admin");
+
+        User user = mapper.checkLogin(map);
+        System.out.println(user);
+    }
 
     @Test
     public void checkLogin() {
