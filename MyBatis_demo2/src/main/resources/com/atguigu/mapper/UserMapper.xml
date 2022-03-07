@@ -18,19 +18,26 @@
         select * from `t_user`
     </select>
 
-    <select id="findAll" resultType="user">
+    <select id="findAll" resultMap="userMap">
         select * from `t_user`
     </select>
 
-    <select id="getUserByUsername" parameterType="string" resultType="user">
+    <select id="getUserByUsername" parameterType="string" resultMap="userMap">
         select * from `t_user` where `username` = #{username}
     </select>
 
-    <select id="getUserByUsername2" parameterType="string" resultType="user">
+    <select id="getUserByUsername2" parameterType="string" resultMap="userMap">
         select * from `t_user` where `username` = '${username}'
     </select>
 
 
+    <!--
+        当请求参数有多个时, mybatis框架会把这些参数封装到Map对象中供调用. 这个Map的键默认为arg0 arg1 param0 param1 ...
+        在SQL映射中需要取值的时候, 只需要给出键名即可. 另外可以组合取值. 如arg0 和 param1等
+    -->
+    <select id="getUserByUsernameAndPassword" resultMap="userMap">
+        select * from `t_user` where `username` = #{arg0} and `password` = #{arg1}
+    </select>
 
 
 
