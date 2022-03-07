@@ -3,6 +3,7 @@ package com.atguigu.mapper;
 import com.atguigu.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户映射器
@@ -24,6 +25,8 @@ public interface UserMapper {
     public User getUserByUsername2(String username);
 
     public User getUserByUsernameAndPassword(String username, String password);
+
+    public User checkLogin(Map<String, Object> map);
 
 
 
