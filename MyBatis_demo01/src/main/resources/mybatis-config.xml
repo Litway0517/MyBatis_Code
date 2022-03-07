@@ -51,7 +51,7 @@
 
     <!--引入映射文件-->
     <mappers>
-        <mapper resource="com/litway/mapper/UserMapper.xml" />
+        <!--<mapper resource="com/litway/mapper/UserMapper.xml" />-->
         <!--
             以包为单位引入映射文件
             要求:
