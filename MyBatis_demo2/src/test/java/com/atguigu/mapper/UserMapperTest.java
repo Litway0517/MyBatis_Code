@@ -12,7 +12,16 @@ import static org.junit.Assert.*;
 public class UserMapperTest {
 
     @Test
-    public void test() {
+    public void checkLogin() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User litway = mapper.getUserByUsernameAndPassword("张三", "admin");
+        System.out.println(litway);
+    }
+
+    @Test
+    public void getUserByUsername() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
