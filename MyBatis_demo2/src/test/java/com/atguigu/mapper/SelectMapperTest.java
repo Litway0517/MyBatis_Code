@@ -11,6 +11,23 @@ import static org.junit.Assert.*;
 
 public class SelectMapperTest {
 
+
+    @Test
+    public void getUserByIdToMap() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        SelectMapper selectMapper = sqlSession.getMapper(SelectMapper.class);
+        System.out.println(selectMapper.getUserByIdToMap(3));
+    }
+
+    @Test
+    public void getCount() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        SelectMapper selectMapper = sqlSession.getMapper(SelectMapper.class);
+        System.out.println(selectMapper.getCount());
+    }
+
     @Test
     public void findAll() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
