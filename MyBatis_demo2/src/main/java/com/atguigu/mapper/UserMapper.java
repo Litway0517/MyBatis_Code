@@ -1,6 +1,7 @@
 package com.atguigu.mapper;
 
 import com.atguigu.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,8 @@ public interface UserMapper {
     public User getUserByUsernameAndPassword(String username, String password);
 
     public User checkLogin(Map<String, Object> map);
+
+    public User checkLoginByParam(@Param("username") String username, @Param("password") String password);
 
 
 
