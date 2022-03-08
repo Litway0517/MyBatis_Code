@@ -12,15 +12,19 @@
         <result column="del_flag" property="delFlag"/>
     </resultMap>
 
+    <sql id="selectUserVo">
+        select * from `t_user`
+    </sql>
+
     <select id="getUserById" parameterType="integer" resultMap="userMap">
-        select *
-        from `t_user`
-        where `id` = #{userId}
+        <include refid="selectUserVo" />
+        <where>
+            `id` = #{userId}
+        </where>
     </select>
 
     <select id="findAllUser" resultMap="userMap">
-        select *
-        from `t_user`
+        <include refid="selectUserVo" />
     </select>
 
     <!--
@@ -34,6 +38,14 @@
 
     <select id="getUserByIdToMap" resultType="java.util.Map">
         select * from `t_user` where id = #{userId}
+    </select>
+
+    <select id="getAllUserToMap" resultType="java.util.Map">
+        <include refid="selectUserVo" />
+    </select>
+
+    <select id="getAllUserToMapByMapkey" resultType="java.util.Map">
+        <include refid="selectUserVo" />
     </select>
 </mapper>
 

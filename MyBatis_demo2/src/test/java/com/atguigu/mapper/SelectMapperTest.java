@@ -11,6 +11,16 @@ import static org.junit.Assert.*;
 
 public class SelectMapperTest {
 
+    @Test
+    public void getAllUserToMap() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        SelectMapper selectMapper = sqlSession.getMapper(SelectMapper.class);
+        // org.apache.ibatis.exceptions.TooManyResultsException
+        System.out.println("方式1 -> " + selectMapper.getAllUserToMap());
+
+        System.out.println("方式2 -> " + selectMapper.getAllUserToMapByMapkey());
+    }
 
     @Test
     public void getUserByIdToMap() {
