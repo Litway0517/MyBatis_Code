@@ -13,6 +13,16 @@ import static org.junit.Assert.*;
 public class UserMapperTest {
 
     @Test
+    public void checkLoginByParam() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        // 使用@Param("xxx")注解方式
+        User user1 = mapper.checkLoginByParam("张三", "admin");
+        System.out.println(user1);
+    }
+
+    @Test
     public void checkLogin2() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
@@ -22,6 +32,7 @@ public class UserMapperTest {
         map.put("username", "张三");
         map.put("password", "admin");
 
+        // 使用map方式
         User user = mapper.checkLogin(map);
         System.out.println(user);
     }
