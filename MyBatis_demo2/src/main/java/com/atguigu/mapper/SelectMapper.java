@@ -8,10 +8,13 @@ import java.util.List;
 public interface SelectMapper {
 
     // 根据id查询用户信息
-    public User getUserById(@Param("userId") Integer id);
+    User getUserById(@Param("userId") Integer id);
 
     // 查询所有用户
-    public List<User> findAllUser();
+    List<User> findAllUser();
+
+    // 查询特殊字段 -> user表的总记录数
+    Integer getCount();
 
 
 }
