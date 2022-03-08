@@ -29,6 +29,8 @@ public interface UserMapper {
 
     public User checkLogin(Map<String, Object> map);
 
+    public User checkRegister(User user);
+
     public User checkLoginByParam(@Param("username") String username, @Param("password") String password);
 
 
