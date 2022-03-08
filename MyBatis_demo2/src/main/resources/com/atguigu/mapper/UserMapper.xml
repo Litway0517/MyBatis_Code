@@ -49,6 +49,22 @@
     </select>
 
     <!--
+        传过来的参数为user实体, 使用#{}占位符取对用实体的成员变量即可传递参数.
+    -->
+    <select id="checkRegister" parameterType="user" resultMap="userMap">
+        <!--
+            这里面的#{username}, 是User实体的setter方法, 而不是User实体的username成员变量. 注意!!
+            mybatis先取到setUsername()方法这个属性(方法也叫做属性), 然后将set单词去掉, 剩余的是Username, 再将字母U变换成小写,
+            得到了username, 再来取值. 因此属性不是指实体类中的成员变量.
+            有一种情况, 一个实体类中没有成员变量, 但是会有getter\setter方法! 所以这里需要注意.
+            鼠标跟踪下面的#{username}中的username时, 跟踪到的也是User实体类中的setUsername()方法!　
+        -->
+        select * from `t_user` where `username` = #{username}
+    </select>
+
+
+
+    <!--
         User checkLoginByParam(@Param("username") String username, @Param("password") String password);
         此时, MyBatis框架仍然是将参数存放到Map对象中. 但是存储username参数时, 对应的键是@Param()注解规定的值, 即username.
         同样, password参数对应的键是, password. 这样增强了可读性.
