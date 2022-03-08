@@ -48,6 +48,18 @@
         select * from `t_user` where `username` = #{username} and `password` = #{password}
     </select>
 
+    <!--
+        User checkLoginByParam(@Param("username") String username, @Param("password") String password);
+        此时, MyBatis框架仍然是将参数存放到Map对象中. 但是存储username参数时, 对应的键是@Param()注解规定的值, 即username.
+        同样, password参数对应的键是, password. 这样增强了可读性.
+    -->
+    <select id="checkLoginByParam" parameterType="map" resultMap="userMap">
+        select * from `t_user` where `username` = #{username} and `password` = #{password}
+    </select>
+
+
+
+
 
 </mapper>
 
