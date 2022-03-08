@@ -31,6 +31,10 @@
         select count(*)
         from `t_user`
     </select>
+
+    <select id="getUserByIdToMap" resultType="java.util.Map">
+        select * from `t_user` where id = #{userId}
+    </select>
 </mapper>
 
 
