@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mapper.SQLMapper">
+    <resultMap id="userMap" type="user">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="age" property="age"/>
+        <result column="sex" property="sex"/>
+        <result column="email" property="email"/>
+        <result column="del_flag" property="delFlag"/>
+    </resultMap>
+
+    <sql id="selectUserVo">
+        select * from `t_user`
+    </sql>
+
+    <select id="getUserByLike" resultMap="userMap">
+        <include refid="selectUserVo" />
+        <where>
+            <!--
+                username like '%#{username}%'
+                此时会报错, 因为位于单引号中的占位符会被认为是一个字符串, 不会被解析, 参数也不能赋值上去.
+            -->
+            <!-- 第一种方法 -->
+            <!--username like '%${username}%'-->
+
+            <!-- 第二种方法 concat()字符串拼接 -->
+            <!--username like concat('%', #{username}, '%')-->
+
+            <!-- 第三种方法 最常用的 -->
+            username like "%"#{username}"%"
+        </where>
+    </select>
+</mapper>
+
+
