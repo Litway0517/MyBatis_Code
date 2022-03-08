@@ -12,6 +12,19 @@ import static org.junit.Assert.*;
 
 public class UserMapperTest {
 
+
+    @Test
+    public void checkRegister() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User();
+        user.setUsername("张三");
+        user.setAge(10);
+        User user1 = mapper.checkRegister(user);
+        System.out.println(user1);
+    }
+
     @Test
     public void checkLoginByParam() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
