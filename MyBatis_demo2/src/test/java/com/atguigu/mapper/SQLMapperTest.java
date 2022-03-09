@@ -12,6 +12,16 @@ import static org.junit.Assert.*;
 public class SQLMapperTest {
 
     @Test
+    public void insertUser() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        SQLMapper sqlMapper = sqlSession.getMapper(SQLMapper.class);
+        User user = new User(null, "lit", "lit", 88, "男", "12345", "0");
+        sqlMapper.insertUser(user);
+        System.out.println(user);
+    }
+
+    @Test
     public void getUserByTableName() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
