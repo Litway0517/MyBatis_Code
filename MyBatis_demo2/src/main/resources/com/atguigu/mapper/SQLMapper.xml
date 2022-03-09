@@ -33,6 +33,15 @@
             username like "%"#{username}"%"
         </where>
     </select>
+
+    <delete id="deleteMore" parameterType="string">
+        <!--
+            这样删除是有问题的. 虽然使用了占位符 但是#{}给参数增加了单引号导致删除不报错但是没有真正地执行其效果
+            需要使用 ${}: ${}不会自动加单引号. 需要手动加. 这也是为什么上面getUserByLike方法加了单引号. 不加单引号就能起到作用了.
+        -->
+        <!--update `t_user` set del_flag = '2' where id in (#{ids})-->
+        update `t_user` set del_flag = '2' where id in (${ids})
+    </delete>
 </mapper>
 
 
