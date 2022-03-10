@@ -28,6 +28,10 @@ public class Employee {
      * 电子邮件
      */
     private String email;
+    /**
+     * 德尔国旗
+     */
+    private String delFlag;
 
     /**
      * 员工
@@ -53,6 +57,7 @@ public class Employee {
     }
 
     /**
+     * gete id
      * gete id
      *
      * @return {@link Integer}
@@ -143,6 +148,24 @@ public class Employee {
     }
 
     /**
+     * 得到del国旗
+     *
+     * @return {@link String}
+     */
+    public String getDelFlag() {
+        return delFlag;
+    }
+
+    /**
+     * 设置del标志
+     *
+     * @param delFlag 德尔国旗
+     */
+    public void setDelFlag(String delFlag) {
+        this.delFlag = delFlag;
+    }
+
+    /**
      * 字符串
      *
      * @return {@link String}
@@ -155,6 +178,7 @@ public class Employee {
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
                 ", email='" + email + '\'' +
+                ", delFlag='" + delFlag + '\'' +
                 '}';
     }
 }

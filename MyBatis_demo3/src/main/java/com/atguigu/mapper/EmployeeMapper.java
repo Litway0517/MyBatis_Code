@@ -9,6 +9,9 @@ public interface EmployeeMapper {
     // 查询所有员工
     List<Employee> getAllEmployee();
 
+    // 查询所有员工
+    List<Employee> getAllEmployeeNew();
+
 
 
 
