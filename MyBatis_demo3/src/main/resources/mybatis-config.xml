@@ -9,9 +9,9 @@
         mybatis的核心配置
         mapUnderscoreToCamelCase: 将mysql中的下划线字段转换成JavaBean中的驼峰命名
     -->
-    <settings>
+    <!--<settings>
         <setting name="mapUnderscoreToCamelCase" value="true" />
-    </settings>
+    </settings>-->
 
     <typeAliases>
         <package name="com.atguigu.domain" />
