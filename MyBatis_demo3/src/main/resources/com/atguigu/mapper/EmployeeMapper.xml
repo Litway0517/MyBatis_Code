@@ -13,6 +13,21 @@
         <result column="del_flag" property="delFlag" />
     </resultMap>
 
+    <resultMap id="selectEmployeeByIdVo" type="employee">
+        <!--
+            resultMap标签中可以设置两个id标签
+            id需要设置在result之前
+        -->
+        <id column="eid" property="eId" />
+        <id column="dept_did" property="dept.deptId" />
+        <result column="emp_name" property="empName" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="email" property="email" />
+        <result column="del_flag" property="delFlag" />
+        <result column="dept_name" property="dept.deptName" />
+    </resultMap>
+
     <sql id="selectEmployeeVo">
         select * from `t_emp`
     </sql>
@@ -23,6 +38,14 @@
 
     <select id="getAllEmployeeNew" resultMap="selectEmployeeVo">
         <include refid="selectEmployeeVo" />
+    </select>
+
+    <select id="getEmployeeById" resultMap="selectEmployeeByIdVo">
+        select emp.eid, emp.emp_name, emp.age, emp.sex, emp.email, emp.did as `emp_did`, emp.del_flag,
+               dept.did as `dept_did`, dept.dept_name
+        from `t_emp` `emp`
+        left join `t_dept` `dept` on emp.did = dept.did
+        where emp.eid = #{eId}
     </select>
 </mapper>
 
