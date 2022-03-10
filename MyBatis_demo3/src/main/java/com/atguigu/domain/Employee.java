@@ -34,6 +34,11 @@ public class Employee {
     private String delFlag;
 
     /**
+     * 部门
+     */
+    private Dept dept;
+
+    /**
      * 员工
      */
     public Employee() {
@@ -57,6 +62,7 @@ public class Employee {
     }
 
     /**
+     * gete id
      * gete id
      * gete id
      *
@@ -166,6 +172,24 @@ public class Employee {
     }
 
     /**
+     * 得到部门
+     *
+     * @return {@link Dept}
+     */
+    public Dept getDept() {
+        return dept;
+    }
+
+    /**
+     * 设置部门
+     *
+     * @param dept 部门
+     */
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
+    /**
      * 字符串
      *
      * @return {@link String}
@@ -179,6 +203,7 @@ public class Employee {
                 ", sex='" + sex + '\'' +
                 ", email='" + email + '\'' +
                 ", delFlag='" + delFlag + '\'' +
+                ", dept=" + dept +
                 '}';
     }
 }
