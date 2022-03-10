@@ -12,6 +12,15 @@ import static org.junit.Assert.*;
 public class EmployeeMapperTest {
 
     @Test
+    public void getAllEmployeeNew() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+        List<Employee> allEmployeeNew = employeeMapper.getAllEmployeeNew();
+        allEmployeeNew.forEach(System.out::println);
+    }
+
+    @Test
     public void getAllEmployee() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
