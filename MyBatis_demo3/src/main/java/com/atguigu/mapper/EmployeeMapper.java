@@ -25,5 +25,8 @@ public interface EmployeeMapper {
      */
     Employee getEmployeeAndDeptByStepOne(@Param("eId") Integer eId);
 
+    // 分步查询第二步, 根据部门id, 查询在该部门的员工
+    List<Employee> getEmployeeByDeptId(@Param("dId") Integer dId);
+
 
 }
