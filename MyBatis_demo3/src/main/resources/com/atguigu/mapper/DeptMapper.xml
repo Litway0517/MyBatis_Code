@@ -3,9 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.mapper.DeptMapper">
 
+    <resultMap id="selectDeptByStepVo" type="Dept" >
+        <id column="did" property="deptId" />
+        <result column="dept_name" property="deptName" />
+    </resultMap>
 
-
-
+    <select id="getEmpAndDeptByStepTwo" resultMap="selectDeptByStepVo">
+        select d.did, d.dept_name
+        from `t_dept` d
+        where did = #{dId}
+    </select>
 </mapper>
 
 
