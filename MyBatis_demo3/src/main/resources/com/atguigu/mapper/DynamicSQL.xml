@@ -20,7 +20,7 @@
     <select id="getEmployeeByCondition" resultType="com.atguigu.domain.Employee">
         <include refid="selectEmployeeVo" />
         where 1 = 1
-        <if test="empName != null and empName != ''">emp_name = #{empName}</if>
+        <if test="empName != null and empName != ''">and emp_name = #{empName}</if>
         <if test="age != null and age != ''">and age = #{age}</if>
         <if test="sex != null and sex != ''">and sex = #{sex}</if>
         <if test="email != null and email != ''">and email = #{email}</if>
