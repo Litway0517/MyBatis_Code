@@ -16,6 +16,9 @@ public interface EmployeeMapper {
     // 查询员工及员工的部门信息
     Employee getEmployeeById(@Param("eId") Integer eId);
 
+    // 使用association标签手动映射
+    Employee getEmployeeByIdAssociation(@Param("eId") Integer eId);
+
 
 
 
