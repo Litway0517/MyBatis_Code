@@ -8,9 +8,30 @@
         <result column="dept_name" property="deptName" />
     </resultMap>
 
+    <resultMap id="selectDeptAndEmployeeVo" type="Dept">
+        <id column="did" property="deptId" />
+        <result column="dept_name" property="deptName" />
+        <collection property="employeeList" ofType="com.atguigu.domain.Employee">
+            <id column="eid" property="eId" />
+            <result column="emp_name" property="empName" />
+            <result column="age" property="age" />
+            <result column="sex" property="sex" />
+            <result column="email" property="email" />
+            <result column="del_flag" property="delFlag" />
+        </collection>
+    </resultMap>
+
     <select id="getEmpAndDeptByStepTwo" resultMap="selectDeptByStepVo">
         select d.did, d.dept_name
         from `t_dept` d
+        where d.did = #{dId}
+    </select>
+
+    <select id="getDeptAndEmployeeById" resultMap="selectDeptAndEmployeeVo">
+        select d.did, d.dept_name,
+                e.eid, e.emp_name, e.age, e.sex, e.email, e.del_flag
+        from `t_dept` d
+        left join `t_emp` e on d.did = e.did
         where d.did = #{dId}
     </select>
 </mapper>
