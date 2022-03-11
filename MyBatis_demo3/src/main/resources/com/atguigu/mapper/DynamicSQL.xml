@@ -3,7 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.mapper.DynamicSQL">
 
+    <resultMap id="getEmployeeMapVo" type="Employee">
+        <id column="eid" property="eId" />
+        <result column="emp_name" property="empName" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="email" property="email" />
+        <result column="delFlag" property="delFlag" />
+    </resultMap>
 
+    <sql id="selectEmployeeVo">
+        select emp.eid, emp.emp_name, emp.age, emp.sex, emp.email, emp.did as `emp_did`, emp.del_flag
+        from `t_emp` `emp`
+    </sql>
+
+    <select id="getEmployeeByCondition" resultType="com.atguigu.domain.Employee">
+        <include refid="selectEmployeeVo" />
+        where 1 = 1
+        <if test="empName != null and empName != ''">emp_name = #{empName}</if>
+        <if test="age != null and age != ''">and age = #{age}</if>
+        <if test="sex != null and sex != ''">and sex = #{sex}</if>
+        <if test="email != null and email != ''">and email = #{email}</if>
+    </select>
 </mapper>
 
 
