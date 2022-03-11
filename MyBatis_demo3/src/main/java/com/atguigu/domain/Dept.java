@@ -1,5 +1,7 @@
 package com.atguigu.domain;
 
+import java.util.List;
+
 /**
  * 部门
  *
@@ -16,6 +18,11 @@ public class Dept {
      * 部门名称
      */
     private String deptName;
+
+    /**
+     * 员工列表
+     */
+    private List<Employee> employeeList;
 
     /**
      * 部门
@@ -71,6 +78,24 @@ public class Dept {
     }
 
     /**
+     * 让员工列表
+     *
+     * @return {@link List}<{@link Employee}>
+     */
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    /**
+     * 设置员工列表
+     *
+     * @param employeeList 员工列表
+     */
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
+    /**
      * 字符串
      *
      * @return {@link String}
@@ -80,6 +105,7 @@ public class Dept {
         return "Dept{" +
                 "deptId=" + deptId +
                 ", deptName='" + deptName + '\'' +
+                ", employeeList=" + employeeList +
                 '}';
     }
 }
