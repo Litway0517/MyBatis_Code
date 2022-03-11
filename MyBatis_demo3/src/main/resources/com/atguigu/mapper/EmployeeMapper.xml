@@ -13,6 +13,7 @@
         <result column="del_flag" property="delFlag" />
     </resultMap>
 
+    <!-- 使用级联进行映射 -->
     <resultMap id="selectEmployeeByIdVo" type="employee">
         <!--
             resultMap标签中可以设置两个id标签
@@ -28,7 +29,7 @@
         <result column="dept_name" property="dept.deptName" />
     </resultMap>
 
-    <!-- 第三种映射方式 -->
+    <!-- 使用association进行映射 -->
     <resultMap id="selectEmployeeByAssociationVo" type="employee">
         <id column="eid" property="eId" />
         <result column="emp_name" property="empName" />
@@ -41,6 +42,27 @@
             <result column="dept_name" property="deptName" />
         </association>
     </resultMap>
+
+    <!-- 分步查询 -->
+    <resultMap id="selectEmployeeAndDeptByStep" type="employee" >
+        <id column="eid" property="eId" />
+        <result column="emp_name" property="empName" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="email" property="email" />
+        <result column="del_flag" property="delFlag" />
+
+        <!--
+            根据当前sql查询出来的结果的column字段去调用select属性指明的方法, 并将方法的返回值赋值给property属性指明的成员变量
+            select的调用方式是 全限名+方法名. 实际上就是namespace+id.
+        -->
+        <association column="emp_did"
+                     property="dept"
+                     select="com.atguigu.mapper.DeptMapper.getEmpAndDeptByStepTwo"
+                     javaType="com.atguigu.domain.Dept" >
+        </association>
+    </resultMap>
+
 
     <sql id="selectEmployeeVo">
         select * from `t_emp`
@@ -68,6 +90,14 @@
         from `t_emp` `emp`
         left join `t_dept` `dept` on emp.did = dept.did
         where emp.eid = #{eId}
+    </select>
+
+    <select id="getEmployeeAndDeptByStepOne" resultMap="selectEmployeeAndDeptByStep" >
+        select emp.eid, emp.emp_name, emp.age, emp.sex, emp.email, emp.did as `emp_did`, emp.del_flag
+        from `t_emp` `emp`
+        <where>
+            <if test="eId != null and eId !=''">and eid = #{eId}</if>
+        </where>
     </select>
 </mapper>
 
