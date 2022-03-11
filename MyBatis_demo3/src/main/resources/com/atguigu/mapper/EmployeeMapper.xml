@@ -28,6 +28,20 @@
         <result column="dept_name" property="dept.deptName" />
     </resultMap>
 
+    <!-- 第三种映射方式 -->
+    <resultMap id="selectEmployeeByAssociationVo" type="employee">
+        <id column="eid" property="eId" />
+        <result column="emp_name" property="empName" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="email" property="email" />
+        <result column="del_flag" property="delFlag" />
+        <association property="dept" javaType="com.atguigu.domain.Dept" >
+            <id column="dept_did" property="deptId" />
+            <result column="dept_name" property="deptName" />
+        </association>
+    </resultMap>
+
     <sql id="selectEmployeeVo">
         select * from `t_emp`
     </sql>
@@ -43,6 +57,14 @@
     <select id="getEmployeeById" resultMap="selectEmployeeByIdVo">
         select emp.eid, emp.emp_name, emp.age, emp.sex, emp.email, emp.did as `emp_did`, emp.del_flag,
                dept.did as `dept_did`, dept.dept_name
+        from `t_emp` `emp`
+        left join `t_dept` `dept` on emp.did = dept.did
+        where emp.eid = #{eId}
+    </select>
+
+    <select id="getEmployeeByIdAssociation" resultMap="selectEmployeeByAssociationVo">
+        select emp.eid, emp.emp_name, emp.age, emp.sex, emp.email, emp.did as `emp_did`, emp.del_flag,
+                dept.did as `dept_did`, dept.dept_name
         from `t_emp` `emp`
         left join `t_dept` `dept` on emp.did = dept.did
         where emp.eid = #{eId}
