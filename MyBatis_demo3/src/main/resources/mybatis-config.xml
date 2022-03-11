@@ -23,7 +23,7 @@
                 true: 所有方法调用都会加载该对象的所有属性
                 false: 仅仅会按需加载, 不会将实体的全部属性都加载
         -->
-        <setting name="aggressiveLazyLoading" value="true" />
+        <!--<setting name="aggressiveLazyLoading" value="true" />-->
     </settings>
 
     <typeAliases>
