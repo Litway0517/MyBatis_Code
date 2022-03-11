@@ -9,9 +9,22 @@
         mybatis的核心配置
         mapUnderscoreToCamelCase: 将mysql中的下划线字段转换成JavaBean中的驼峰命名
     -->
-    <!--<settings>
+    <settings>
         <setting name="mapUnderscoreToCamelCase" value="true" />
-    </settings>-->
+        <!--
+            开启延时加载 -> 对于所有的分步查询的SQL均生效
+            但是, 个别需要即时加载的SQL可以通过 fetchType属性设置.
+                lazy: 表示仍然是懒加载
+                eager: 表示的是及时加载
+        -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--
+            aggressiveLazyLoading="true|false"
+                true: 所有方法调用都会加载该对象的所有属性
+                false: 仅仅会按需加载, 不会将实体的全部属性都加载
+        -->
+        <setting name="aggressiveLazyLoading" value="true" />
+    </settings>
 
     <typeAliases>
         <package name="com.atguigu.domain" />
