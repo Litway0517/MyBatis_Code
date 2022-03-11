@@ -1,5 +1,6 @@
 package com.atguigu.mapper;
 
+import com.atguigu.domain.Dept;
 import com.atguigu.domain.Employee;
 import com.atguigu.util.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -12,12 +13,32 @@ import static org.junit.Assert.*;
 public class EmployeeMapperTest {
 
     @Test
+    public void getDeptAndEmployeeByStepOne() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        DeptMapper deptMapper = sqlSession.getMapper(DeptMapper.class);
+        Dept deptAndEmployeeByStepOne = deptMapper.getDeptAndEmployeeByStepOne(2);
+        System.out.println(deptAndEmployeeByStepOne.getDeptName());
+    }
+
+    @Test
+    public void getDeptAndEmployeeById() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        DeptMapper deptMapper = sqlSession.getMapper(DeptMapper.class);
+        Dept deptAndEmployeeById = deptMapper.getDeptAndEmployeeById(2);
+        System.out.println(deptAndEmployeeById);
+    }
+
+    @Test
     public void getEmployeeAndDeptByStep() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
         EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
         Employee employee = employeeMapper.getEmployeeAndDeptByStepOne(1);
-        System.out.println(employee);
+        System.out.println(employee.getEmpName());
+        System.out.println("====================================");
+        System.out.println(employee.getDept());
     }
 
     @Test
