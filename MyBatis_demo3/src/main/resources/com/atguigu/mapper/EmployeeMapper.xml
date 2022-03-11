@@ -105,6 +105,14 @@
             <if test="eId != null and eId !=''">and eid = #{eId}</if>
         </where>
     </select>
+
+    <select id="getEmployeeByDeptId" resultType="com.atguigu.domain.Employee">
+        select emp.eid, emp.emp_name, emp.age, emp.sex, emp.email, emp.did as `emp_did`, emp.del_flag
+        from `t_emp` `emp`
+        <where>
+            <if test="dId != null and dId !=''">and did = #{dId}</if>
+        </where>
+    </select>
 </mapper>
 
 
