@@ -83,6 +83,7 @@
                     当出现了一个when标签匹配成功时就会停止下面其他when标签及otherwise标签的计算 不拼接
                     choose...when...otherwise 就相当于 if...else if..else
                     注意: when标签至少出现一次
+                         when标签中的SQL片段不需要再加and|or, 因为只有一个when标签能够执行.
                 -->
                 <when test="empName != null and empName != ''">emp_name = #{empName}</when>
                 <when test="age != null and age != ''">age = #{age}</when>
