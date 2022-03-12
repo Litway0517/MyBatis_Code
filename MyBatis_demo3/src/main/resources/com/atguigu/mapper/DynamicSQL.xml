@@ -25,6 +25,21 @@
         <if test="sex != null and sex != ''">and sex = #{sex}</if>
         <if test="email != null and email != ''">and email = #{email}</if>
     </select>
+
+    <select id="getEmployeeByConditionTwo" resultType="com.atguigu.domain.Employee">
+        <include refid="selectEmployeeVo" />
+        <!--
+            where 标签能够根据where标签内部的if进行动态的生成. 而且, 还能够处理每一个字段前面多余的and 或者 or这种关联
+            where标签中如果没有成立的if语句, 那么不会拼接where关键字的
+            注意: where标签不能将其内部的成立的if语句的后面的and去掉, 比如 emp_name = #{empName} and (此时and会报错)
+        -->
+        <where>
+            <if test="empName != null and empName != ''">and emp_name = #{empName}</if>
+            <if test="age != null and age != ''">and age = #{age}</if>
+            <if test="sex != null and sex != ''">and sex = #{sex}</if>
+            <if test="email != null and email != ''">and email = #{email}</if>
+        </where>
+    </select>
 </mapper>
 
 
