@@ -12,6 +12,16 @@ import static org.junit.Assert.*;
 public class DynamicSQLTest {
 
     @Test
+    public void getEmployeeByChoose() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        DynamicSQL dynamicSQL = sqlSession.getMapper(DynamicSQL.class);
+        Employee employee = new Employee(null, "", null, "", "");
+        List<Employee> employeeList = dynamicSQL.getEmployeeByChoose(employee);
+        System.out.println(employeeList);
+    }
+
+    @Test
     public void getEmployeeByConditionFourth() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
@@ -19,7 +29,6 @@ public class DynamicSQLTest {
         Employee employee = new Employee(null, "张三", null, "", "");
         List<Employee> employeeList = dynamicSQL.getEmployeeByConditionFourth(employee);
         System.out.println(employeeList);
-
     }
 
     @Test
