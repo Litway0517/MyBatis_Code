@@ -59,6 +59,21 @@
             <if test="email != null and email != ''">email = #{email} and</if>
         </trim>
     </select>
+
+    <select id="getEmployeeByConditionFourth" resultType="com.atguigu.domain.Employee">
+        <include refid="selectEmployeeVo" />
+        <!--
+            注意:
+                如果prefix="where", 那么一般是多条件查询, 此时也应该写上prefixOverrides, 不然的话,
+                trim标签并不会自动处理多余的 and|or 等这类连接词. 就会导致连接条件报错
+        -->
+        <trim prefix="where" prefixOverrides="and|or" suffixOverrides="and 测试后缀 | or 测试后缀 | 'not' 测试后缀">
+            <if test="empName != null and empName != ''">emp_name = #{empName} and 测试后缀</if>
+            <if test="age != null and age != ''">and age = #{age} and 测试后缀</if>
+            <if test="sex != null and sex != ''">and sex = #{sex} or 测试后缀</if>
+            <if test="email != null and email != ''">and email = #{email} 'not' 测试后缀</if>
+        </trim>
+    </select>
 </mapper>
 
 
