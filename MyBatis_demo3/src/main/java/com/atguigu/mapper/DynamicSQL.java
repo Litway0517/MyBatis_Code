@@ -15,6 +15,7 @@ public interface DynamicSQL {
     // 多条件查询 -> trim标签1
     List<Employee> getEmployeeByConditionThree(Employee employee);
 
-
+    // 多条件查询 -> trim标签2
+    List<Employee> getEmployeeByConditionFourth(Employee employee);
 
 }
