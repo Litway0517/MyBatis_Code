@@ -29,8 +29,9 @@
     <select id="getEmployeeByConditionTwo" resultType="com.atguigu.domain.Employee">
         <include refid="selectEmployeeVo" />
         <!--
-            where 标签能够根据where标签内部的if进行动态的生成. 而且, 还能够处理每一个字段前面多余的and 或者 or这种关联
-            where标签中如果没有成立的if语句, 那么不会拼接where关键字的
+            where标签
+                能够根据where标签内部的if进行动态的生成. 而且, 还能够处理每一个字段前面多余的and 或者 or这种连接词
+                where标签中的if标签如果都不成立, 那么不会拼接where关键字的
             注意: where标签不能将其内部的成立的if语句的后面的and去掉, 比如 emp_name = #{empName} and (此时and会报错)
         -->
         <where>
@@ -39,6 +40,24 @@
             <if test="sex != null and sex != ''">and sex = #{sex}</if>
             <if test="email != null and email != ''">and email = #{email}</if>
         </where>
+    </select>
+
+    <select id="getEmployeeByConditionThree" resultType="com.atguigu.domain.Employee">
+        <include refid="selectEmployeeVo" />
+        <!--
+            trim标签
+                prefix|suffix: 针对整体
+                    首先, trim标签中的所有子标签经过计算后得到一个整体, 然后再在该整体的 前面|后面 加上指定内容~
+                prefixOverrides|suffixOverrides: 针对trim标签中的每一个子标签
+                    去掉trim标签中的每一个子标签的 前面或后面 指定内容
+            若当trim标签中的子标签均不成立时, trim标签没有效果(特指prefix和suffix不会起作用) 不会拼接SQL语句中
+        -->
+        <trim prefix="where" suffix="and 1 = 1" suffixOverrides="and|or">
+            <if test="empName != null and empName != ''">emp_name = #{empName} and</if>
+            <if test="age != null and age != ''">age = #{age} or</if>
+            <if test="sex != null and sex != ''">sex = #{sex} and</if>
+            <if test="email != null and email != ''">email = #{email} and</if>
+        </trim>
     </select>
 </mapper>
 
