@@ -74,6 +74,24 @@
             <if test="email != null and email != ''">and email = #{email} 'not' 测试后缀</if>
         </trim>
     </select>
+
+    <select id="getEmployeeByChoose" resultType="com.atguigu.domain.Employee">
+        <include refid="selectEmployeeVo" />
+        <where>
+            <choose>
+                <!--
+                    当出现了一个when标签匹配成功时就会停止下面其他when标签及otherwise标签的计算 不拼接
+                    choose...when...otherwise 就相当于 if...else if..else
+                    注意: when标签至少出现一次
+                -->
+                <when test="empName != null and empName != ''">emp_name = #{empName}</when>
+                <when test="age != null and age != ''">age = #{age}</when>
+                <when test="sex != null and sex != ''">sex = #{sex}</when>
+                <when test="email != null and email != ''">email = #{email}</when>
+                <otherwise>did = 2</otherwise>
+            </choose>
+        </where>
+    </select>
 </mapper>
 
 
