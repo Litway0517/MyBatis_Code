@@ -12,6 +12,22 @@ import static org.junit.Assert.*;
 public class CacheMapperTest {
 
     @Test
+    public void getEmployeeById2() {
+        SqlSession sqlSession1 = SqlSessionUtils.getSqlSession();
+        assert sqlSession1 != null;
+        CacheMapper cacheMapper1 = sqlSession1.getMapper(CacheMapper.class);
+        Employee employeeById = cacheMapper1.getEmployeeById(1);
+        System.out.println(employeeById);
+
+        // 更换了SqlSession之后就执行了两次SQL
+        SqlSession sqlSession2 = SqlSessionUtils.getSqlSession();
+        assert sqlSession2 != null;
+        CacheMapper cacheMapper2 = sqlSession2.getMapper(CacheMapper.class);
+        Employee employeeById2 = cacheMapper1.getEmployeeById(1);
+        System.out.println(employeeById2);
+    }
+
+    @Test
     public void getEmployeeById() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
