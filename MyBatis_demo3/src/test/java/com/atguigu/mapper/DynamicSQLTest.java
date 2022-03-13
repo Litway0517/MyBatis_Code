@@ -12,6 +12,15 @@ import static org.junit.Assert.*;
 public class DynamicSQLTest {
 
     @Test
+    public void deleteEmployeeByForEach() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        DynamicSQL dynamicSQL = sqlSession.getMapper(DynamicSQL.class);
+        int i = dynamicSQL.deleteEmployeeByIds(new Integer[]{6, 7, 8});
+        System.out.println(i);
+    }
+
+    @Test
     public void getEmployeeByChoose() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
