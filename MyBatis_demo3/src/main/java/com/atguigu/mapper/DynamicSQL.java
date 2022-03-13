@@ -22,7 +22,10 @@ public interface DynamicSQL {
     // 多条件查询 -> choose标签
     List<Employee> getEmployeeByChoose(Employee employee);
 
-    // 批量删除 -> foreach标签. 通过整型数组进行批量删除
+    // 批量删除 -> foreach标签. 通过整型数组进行批量删除1
     int deleteEmployeeByIds(@Param("eIds") Integer[] eIds);
+
+    // 批量删除 -> foreach标签. 通过整型数组进行批量删除2
+    int deleteEmployeeByIdsTwo(@Param("eIds") Integer[] eIds);
 
 }
