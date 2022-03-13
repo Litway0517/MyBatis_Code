@@ -93,6 +93,13 @@
             </choose>
         </where>
     </select>
+
+    <delete id="deleteEmployeeByIds">
+        update `t_emp` e set e.del_flag = '2' where e.eid in
+        <foreach collection="eIds" item="eId" open="(" separator="," close=")" >
+            #{eId}
+        </foreach>
+    </delete>
 </mapper>
 
 
