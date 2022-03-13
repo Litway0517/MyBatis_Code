@@ -95,9 +95,18 @@
     </select>
 
     <delete id="deleteEmployeeByIds">
+        <!-- 第一种foreach形式 -->
         update `t_emp` e set e.del_flag = '2' where e.eid in
         <foreach collection="eIds" item="eId" open="(" separator="," close=")" >
             #{eId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteEmployeeByIdsTwo">
+        <!-- 第二种foreach形式 -->
+        update `t_emp` e set e.del_flag = '2' where
+        <foreach collection="eIds" item="eId" separator="or" >
+            e.eid = #{eId}
         </foreach>
     </delete>
 </mapper>
