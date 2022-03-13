@@ -12,7 +12,16 @@ import static org.junit.Assert.*;
 public class DynamicSQLTest {
 
     @Test
-    public void deleteEmployeeByForEach() {
+    public void deleteEmployeeByIdsTwo() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        DynamicSQL dynamicSQL = sqlSession.getMapper(DynamicSQL.class);
+        int i = dynamicSQL.deleteEmployeeByIdsTwo(new Integer[]{6, 7, 8});
+        System.out.println(i);
+    }
+
+    @Test
+    public void deleteEmployeeByIds() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
         DynamicSQL dynamicSQL = sqlSession.getMapper(DynamicSQL.class);
