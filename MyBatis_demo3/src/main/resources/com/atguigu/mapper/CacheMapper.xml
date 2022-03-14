@@ -6,6 +6,11 @@
     <select id="getEmployeeById" resultType="com.atguigu.domain.Employee">
         select * from `t_emp` where eid = #{eId}
     </select>
+
+    <insert id="insertEmployee" parameterType="Employee">
+        insert into `t_emp`
+        values(null, #{empName}, #{age}, #{sex}, #{email}, null, '0')
+    </insert>
 </mapper>
 
 
