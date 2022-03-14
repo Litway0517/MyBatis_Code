@@ -12,6 +12,38 @@ import static org.junit.Assert.*;
 public class CacheMapperTest {
 
     @Test
+    public void testCleanCache() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        CacheMapper cacheMapper1 = sqlSession.getMapper(CacheMapper.class);
+        Employee employeeById = cacheMapper1.getEmployeeById(5);
+        System.out.println(employeeById);
+
+        // 手动清空缓存 -> 清空一级
+        sqlSession.clearCache();
+
+        CacheMapper cacheMapper2 = sqlSession.getMapper(CacheMapper.class);
+        Employee employeeById1 = cacheMapper2.getEmployeeById(5);
+        System.out.println(employeeById1);
+    }
+
+    @Test
+    public void testCache() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        CacheMapper cacheMapper1 = sqlSession.getMapper(CacheMapper.class);
+        Employee employeeById = cacheMapper1.getEmployeeById(5);
+        System.out.println(employeeById);
+
+        // 执行一次新增操作
+        cacheMapper1.insertEmployee(new Employee(null, "lit", 98, "男", "lit@163.com"));
+
+        CacheMapper cacheMapper2 = sqlSession.getMapper(CacheMapper.class);
+        Employee employeeById1 = cacheMapper2.getEmployeeById(5);
+        System.out.println(employeeById1);
+    }
+
+    @Test
     public void getEmployeeById2() {
         SqlSession sqlSession1 = SqlSessionUtils.getSqlSession();
         assert sqlSession1 != null;
