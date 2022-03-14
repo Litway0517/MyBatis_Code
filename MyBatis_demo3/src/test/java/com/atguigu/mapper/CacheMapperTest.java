@@ -2,14 +2,52 @@ package com.atguigu.mapper;
 
 import com.atguigu.domain.Employee;
 import com.atguigu.util.SqlSessionUtils;
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class CacheMapperTest {
+
+    /*
+        二级缓存使用的前提:
+            1- 实体类必须实现Serializable接口
+            2- 全局标签开启 cacheEnabled = true(这个实际上默认开启)
+            3- 在需要使用二级缓存的映射文件中使用 <cache /> 标签
+            4- 一个SqlSession操作完成之后必须进行关闭(仅仅提交是不可以的)
+     */
+    @Test
+    public void testSecondCache() {
+        try {
+            InputStream resourceAsStream = Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactory build = new SqlSessionFactoryBuilder().build(resourceAsStream);
+            SqlSession sqlSession1 = build.openSession(true);
+            SqlSession sqlSession2 = build.openSession(true);
+
+            // 通过 sqlSession1 查询
+            CacheMapper mapper1 = sqlSession1.getMapper(CacheMapper.class);
+            System.out.println(mapper1.getEmployeeById(5));
+
+            // 条件缺一不可. 需要关闭sqlSession1才可以
+            sqlSession1.close();
+
+            // 通过 sqlSession2 查询
+            CacheMapper mapper2 = sqlSession2.getMapper(CacheMapper.class);
+            // Cache Hit Ratio [com.atguigu.mapper.CacheMapper]: 0.5 (LoggingCache.java:60)
+            System.out.println(mapper2.getEmployeeById(5));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     @Test
     public void testCleanCache() {
