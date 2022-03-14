@@ -137,6 +137,11 @@
             (null, #{employee.empName}, #{employee.age}, #{employee.sex}, #{employee.email}, null, null)
         </foreach>
     </insert>
+
+    <insert id="insertEmployee" parameterType="Employee">
+        insert into `t_emp`
+        values(null, #{empName}, #{age}, #{sex}, #{email}, null, '0')
+    </insert>
 </mapper>
 
 
