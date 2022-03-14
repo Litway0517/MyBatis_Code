@@ -13,6 +13,38 @@ import static org.junit.Assert.*;
 public class DynamicSQLTest {
 
     @Test
+    public void testCleanCache() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        DynamicSQL dynamicSQL1 = sqlSession.getMapper(DynamicSQL.class);
+        List<Employee> employee = dynamicSQL1.getEmployeeByCondition(new Employee(null, "张三", null, "", ""));
+        System.out.println(employee);
+
+        // 手动清空缓存 -> 清空一级
+        sqlSession.clearCache();
+
+        DynamicSQL dynamicSQL2 = sqlSession.getMapper(DynamicSQL.class);
+        List<Employee> condition = dynamicSQL2.getEmployeeByCondition(new Employee(null, "张三", null, "", ""));
+        System.out.println(condition);
+    }
+
+    @Test
+    public void testCache() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        assert sqlSession != null;
+        DynamicSQL dynamicSQL1 = sqlSession.getMapper(DynamicSQL.class);
+        List<Employee> employee = dynamicSQL1.getEmployeeByCondition(new Employee(null, "张三", null, "", ""));
+        System.out.println(employee);
+
+        // 执行一次新增操作
+        dynamicSQL1.insertEmployee(new Employee(null, "lit", 98, "男", "lit@163.com"));
+
+        DynamicSQL dynamicSQL2 = sqlSession.getMapper(DynamicSQL.class);
+        List<Employee> condition = dynamicSQL2.getEmployeeByCondition(new Employee(null, "张三", null, "", ""));
+        System.out.println(condition);
+    }
+
+    @Test
     public void insertEmployees() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         assert sqlSession != null;
@@ -23,7 +55,6 @@ public class DynamicSQLTest {
         List<Employee> employees = Arrays.asList(employee1, employee2, employee3);
         int i = dynamicSQL.insertEmployees(employees);
         System.out.println(i);
-
     }
 
     @Test
