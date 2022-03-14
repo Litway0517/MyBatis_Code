@@ -3,6 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.mapper.CacheMapper">
 
+    <!--
+        二级缓存是在同一个SqlSessionFactory下的, 即同一个SqlSession工厂创建的SqlSession都会被缓存.
+        全局配置文件已经开启了 cacheEnabled = true. 只需要在需要的映射文件中开启cache标签就可以使用二级缓存.
+    -->
+    <cache />
+
     <select id="getEmployeeById" resultType="com.atguigu.domain.Employee">
         select * from `t_emp` where eid = #{eId}
     </select>
