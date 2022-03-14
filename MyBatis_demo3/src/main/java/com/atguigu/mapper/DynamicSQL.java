@@ -31,4 +31,7 @@ public interface DynamicSQL {
     // 批量插入 -> collection标签.
     int insertEmployees(@Param("employeeList") List<Employee> employeeList);
 
+    // 新增一个插入方法, 用来测试mybatis的一级缓存
+    int insertEmployee(Employee employee);
+
 }
