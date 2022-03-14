@@ -28,4 +28,7 @@ public interface DynamicSQL {
     // 批量删除 -> foreach标签. 通过整型数组进行批量删除2
     int deleteEmployeeByIdsTwo(@Param("eIds") Integer[] eIds);
 
+    // 批量插入 -> collection标签.
+    int insertEmployees(@Param("employeeList") List<Employee> employeeList);
+
 }
