@@ -1,12 +1,14 @@
 package com.atguigu.domain;
 
+import java.io.Serializable;
+
 /**
  * 员工
  *
  * @author DELL_
  * @date 2022/03/09
  */
-public class Employee {
+public class Employee implements Serializable {
 
     /**
      * e id
