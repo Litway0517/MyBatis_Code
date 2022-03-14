@@ -97,6 +97,20 @@
     <delete id="deleteEmployeeByIds">
         <!-- 第一种foreach形式 -->
         update `t_emp` e set e.del_flag = '2' where e.eid in
+        <!--
+            collection: 是指mapper接口传过来的参数. 类型是一个集合. 但是mapper接口中使用了@Param("eIds")注解, 因此在映射文件中
+                        能够直接用eIds来读取.
+            item: 是集合中的每一项.
+            separator: 分割符, 以foreach标签内的表达式为单位, 进行分割. 此时是: #{eId}, #{eId}, ...
+                        循环体之间的分割符
+
+            foreach标签就是通过item一项一项遍历collection得到的整体内容, 每个元素之间用separator分割.
+
+            open|close: 这两个属性中的内容, 是加在foreach标签的整体内容为外面的.
+                        先将foreach标签中的表达式整体计算出来, 然后加上 open|close 内容.
+
+            open|close仅仅在整体内容加一次. 而separator是加在所有元素两两之间
+        -->
         <foreach collection="eIds" item="eId" open="(" separator="," close=")" >
             #{eId}
         </foreach>
@@ -109,6 +123,20 @@
             e.eid = #{eId}
         </foreach>
     </delete>
+
+    <insert id="insertEmployees">
+        insert into `t_emp` values
+        <!--
+            open|close是加整体内容的开始和结束的, 而插入数据需要多次执行, 因此不用open|close属性
+            执行结果:
+            insert into `t_emp` values (null, ?, ?, ?, ?, null, null) ,
+                                        (null, ?, ?, ?, ?, null, null) ,
+                                        (null, ?, ?, ?, ?, null, null)
+        -->
+        <foreach collection="employeeList" item="employee" separator=",">
+            (null, #{employee.empName}, #{employee.age}, #{employee.sex}, #{employee.email}, null, null)
+        </foreach>
+    </insert>
 </mapper>
 
 
