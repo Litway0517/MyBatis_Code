@@ -3,8 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.mapper.EmployeeMapper">
     <resultMap id="selectEmployeeVo" type="employee">
-        <!-- id标签是主键字段的映射关系 -->
-        <id column="eid" property="eId" />
+        <!--
+            id标签是主键字段的映射关系
+            javaType: 指的是该成员变量的Java类型
+            jdbcType: 指的是数据库中该字段的类型
+            javaType 和 jdbcType都不需要写也行
+        -->
+        <id column="eid" property="eId" javaType="Integer" jdbcType="INTEGER" />
         <!-- column标签是其他字段映射 -->
         <result column="emp_name" property="empName" />
         <result column="age" property="age" />
