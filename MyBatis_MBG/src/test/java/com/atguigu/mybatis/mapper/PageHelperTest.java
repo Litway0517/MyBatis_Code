@@ -31,7 +31,7 @@ public class PageHelperTest {
 //            emps.forEach(System.out::println);
 
             // 另一个分页对象. navigatePages: 这个参数指的是导航页个数. 比如固定显示五页. 固定七页等等.
-            PageInfo<Emp> empPageInfo = new PageInfo<>(emps, 5);
+            PageInfo<Emp> empPageInfo = new PageInfo<Emp>(emps, 5);
 
 
 //            System.out.println(page);
