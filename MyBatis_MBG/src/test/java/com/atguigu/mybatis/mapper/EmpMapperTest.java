@@ -16,6 +16,9 @@ import static org.junit.Assert.*;
 
 public class EmpMapperTest {
 
+    /**
+     * 计算实例
+     */
     @Test
     public void countByExample() {
     }
@@ -36,6 +39,9 @@ public class EmpMapperTest {
     public void insertSelective() {
     }
 
+    /**
+     * 选择例子
+     */
     @Test
     public void selectByExample() {
         try {
