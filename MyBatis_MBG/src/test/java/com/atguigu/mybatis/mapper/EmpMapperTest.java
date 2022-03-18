@@ -15,10 +15,6 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class EmpMapperTest {
-
-    /**
-     * 计算实例
-     */
     @Test
     public void countByExample() {
     }
