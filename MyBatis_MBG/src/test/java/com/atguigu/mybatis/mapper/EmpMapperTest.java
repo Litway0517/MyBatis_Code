@@ -14,6 +14,12 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * emp映射器测试
+ *
+ * @author DELL_
+ * @date 2022/03/19
+ */
 public class EmpMapperTest {
     @Test
     public void countByExample() {
