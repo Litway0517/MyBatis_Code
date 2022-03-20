@@ -21,25 +21,6 @@ import static org.junit.Assert.*;
  * @date 2022/03/19
  */
 public class EmpMapperTest {
-    @Test
-    public void countByExample() {
-    }
-
-    @Test
-    public void deleteByExample() {
-    }
-
-    @Test
-    public void deleteByPrimaryKey() {
-    }
-
-    @Test
-    public void insert() {
-    }
-
-    @Test
-    public void insertSelective() {
-    }
 
     /**
      * 选择例子
@@ -56,6 +37,7 @@ public class EmpMapperTest {
 
             // QBC查询风格 -> 根据条件查询.
             EmpExample empExample = new EmpExample();
+            // 这个createCriteria()方法是构造一个查询规则容器, 根据容器中的条件进行查询
             empExample.createCriteria().andAgeGreaterThanOrEqualTo(20).andAgeLessThan(30);
             List<Emp> emps1 = mapper.selectByExample(empExample);
             emps1.forEach(System.out::println);
@@ -83,15 +65,4 @@ public class EmpMapperTest {
         }
     }
 
-    @Test
-    public void updateByExample() {
-    }
-
-    @Test
-    public void updateByPrimaryKeySelective() {
-    }
-
-    @Test
-    public void updateByPrimaryKey() {
-    }
 }
