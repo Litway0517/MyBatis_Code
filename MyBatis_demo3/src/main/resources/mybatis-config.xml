@@ -13,9 +13,9 @@
         <setting name="mapUnderscoreToCamelCase" value="true" />
         <!--
             开启延时加载 -> 对于所有的分步查询的SQL均生效
-            但是, 个别需要即时加载的SQL可以通过 fetchType属性设置.
+            但是, 个别需要即时加载的SQL可以通过 fetchType属性 设置.
                 lazy: 表示仍然是懒加载
-                eager: 表示的是及时加载
+                eager: 表示的是即时加载
         -->
         <setting name="lazyLoadingEnabled" value="true"/>
         <!--
