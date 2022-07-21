@@ -8,6 +8,17 @@
         <result column="dept_name" property="deptName" />
     </resultMap>
 
+
+    <!--
+        Mybatis查询一对多时会出现覆盖现象使分页的数据不准确. (PageHelper已经说明不支持这种查询)
+
+        问题: 一个Material会引用多个Picture, Picture查询的结果放到Collection里面, 传入的pageSize=10,
+             查看运行日志得到的结果也是10, 但是其中有一个Material关联了两张Picture, 这样就会导致使用 resultMap 接收结果时,
+             Mybatis会把重复的结果合并起来, 这样10条数据就会少2条, 极端情况下就是某个Material关联的Picture超过了9张, 这样分页
+             得到的数据就会是1条.
+
+         解决: 重写分页的逻辑. 第二种方便一些, 就是不使用连接查询, 在Service层使用分步查询.
+     -->
     <resultMap id="selectDeptAndEmployeeVo" type="Dept">
         <id column="did" property="deptId" />
         <result column="dept_name" property="deptName" />
