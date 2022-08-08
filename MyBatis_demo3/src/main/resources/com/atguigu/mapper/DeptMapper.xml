@@ -32,6 +32,10 @@
         </collection>
     </resultMap>
 
+
+    <!--
+        这个方法就是分步查询 很有用 能够将一些难的SQL语句拆分出来 必须记住
+    -->
     <resultMap id="selectDeptAndEmployeeByStepVo" type="Dept" >
         <id column="did" property="deptId" />
         <result column="dept_name" property="deptName" />
