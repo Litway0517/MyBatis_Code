@@ -31,6 +31,7 @@
         <result column="sex" property="sex" />
         <result column="email" property="email" />
         <result column="del_flag" property="delFlag" />
+        <!-- 这里是通过的级联的形式 不推荐使用 可以使用下面的association实现 -->
         <result column="dept_name" property="dept.deptName" />
     </resultMap>
 
