@@ -69,6 +69,11 @@
         where d.did = #{dId}
     </select>
 
+    <!--
+        TODO: getDeptAndEmployeeById 和 getDeptAndEmployeeByStepOne这两个SQL语句的效果是一样的
+    -->
+
+    <!-- 这个是一次性查询 一个SQL -->
     <select id="getDeptAndEmployeeById" resultMap="selectDeptAndEmployeeVo">
         select d.did, d.dept_name,
                 e.eid, e.emp_name, e.age, e.sex, e.email, e.del_flag
@@ -77,6 +82,7 @@
         where d.did = #{dId}
     </select>
 
+    <!-- 这个是分步查询 首先查询出来所有的部门信息 然后根据部门id查询所有的员工 -->
     <select id="getDeptAndEmployeeByStepOne" resultMap="selectDeptAndEmployeeByStepVo">
         select d.did, d.dept_name
         from `t_dept` d
