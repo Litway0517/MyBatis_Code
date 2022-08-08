@@ -35,6 +35,22 @@
     <resultMap id="selectDeptAndEmployeeByStepVo" type="Dept" >
         <id column="did" property="deptId" />
         <result column="dept_name" property="deptName" />
+        <!--
+            - 首先通过SQL: elect d.did, d.dept_name from `t_dept` d where d.did = #{dId} 查询基础的部门信息
+                就是说查询出来所有的部门信息
+            - 然后, 遍历第一步中查出来的所有的部门did, 根据did这个字段去查询员工.
+
+            例如: 表中一共有两个部门 下面这是查出来的所有部门的结果.
+                    did     dept_name
+                    1       A
+                    2       B
+                然后, 根据did=1到数据库的t_emp(员工表)查询所有在A部门的员工
+                     根据did=2到数据库的t_emp(员工表)查询所有在B部门的员工
+
+             column: 用来指定根据哪一个字段查询
+             select: 用来指定根据哪一个SQL语句查询, 实际上就是某个Mapper映射文件中的id
+             ofType: 用来指定查询出来的结果放到哪类实体类中
+        -->
         <collection property="employeeList"
                     column="did"
                     select="com.atguigu.mapper.EmployeeMapper.getEmployeeByDeptId"
