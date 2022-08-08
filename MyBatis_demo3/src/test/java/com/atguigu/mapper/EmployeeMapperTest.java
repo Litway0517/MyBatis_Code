@@ -3,6 +3,7 @@ package com.atguigu.mapper;
 import com.atguigu.domain.Dept;
 import com.atguigu.domain.Employee;
 import com.atguigu.util.SqlSessionUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@Slf4j
 public class EmployeeMapperTest {
 
     @Test
@@ -18,7 +20,8 @@ public class EmployeeMapperTest {
         assert sqlSession != null;
         DeptMapper deptMapper = sqlSession.getMapper(DeptMapper.class);
         Dept deptAndEmployeeByStepOne = deptMapper.getDeptAndEmployeeByStepOne(2);
-        System.out.println(deptAndEmployeeByStepOne.getDeptName());
+        log.debug(deptAndEmployeeByStepOne.toString());
+        log.debug(deptAndEmployeeByStepOne.getDeptName());
     }
 
     @Test
