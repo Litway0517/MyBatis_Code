@@ -61,6 +61,7 @@
         <!--
             根据当前sql查询出来的结果的column字段去调用select属性指明的方法, 并将方法的返回值赋值给property属性指明的成员变量
             select的调用方式是 全限名+方法名. 实际上就是namespace+id.
+            select: 该属性是用来调用其他Mapper映射文件方法的 namespace+id
 
             fetchType是的延迟加载可控(前提是开启了全局延迟加载才会生效 否则无论是lazy还是eager都是一样的效果)
             fetchType="lazy|eager"
