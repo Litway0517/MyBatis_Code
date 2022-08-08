@@ -58,6 +58,7 @@
     <select id="getUserByTableName" resultType="user" resultMap="userMap">
         <!--
             #{}也能够得到mapper接口中的方法的参数, 但是这个参数会被自动加上单引号, 但是表名是不能加单引号的.
+            表名不能加单引号这是一条标准
             下面的SQL报错
         -->
         <!--select * from #{tableName}-->
