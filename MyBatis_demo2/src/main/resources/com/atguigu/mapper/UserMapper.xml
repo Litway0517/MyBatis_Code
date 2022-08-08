@@ -44,6 +44,9 @@
         mybatis能够将多个参数自动封装到Map中供SQL使用.
         也能够手动设置mapper接口中的参数为Map, 然后根据自行定义的键来获取值.
      -->
+    <!--
+        MyBatis框架从Mapper层传参时 其精髓是传递的参数都会被封装到Map对象中 以key-value的方式提供给映射文件使用
+    -->
     <select id="checkLogin" parameterType="map" resultMap="userMap">
         select * from `t_user` where `username` = #{username} and `password` = #{password}
     </select>
